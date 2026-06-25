@@ -1,9 +1,9 @@
-# DOCS — eAi (Evolution CMS + Laravel AI SDK)
+# DOCS — evo-ai (Evolution CMS + Laravel AI SDK)
 
-Це детальний, структурований гайд для інтеграції Laravel AI SDK в Evolution CMS через пакет eAi. Він розширює README поясненнями, конфігами та операційними деталями.
+Це детальний, структурований гайд для інтеграції Laravel AI SDK в Evolution CMS через пакет evo-ai. Він розширює README поясненнями, конфігами та операційними деталями.
 
 ## 1) Огляд
-- eAi — thin‑wrapper над `laravel/ai` у стилі Evo.
+- evo-ai — thin‑wrapper над `laravel/ai` у стилі Evo.
 - `illuminate/foundation` не потрібен: є мінімальні shims для сумісності SDK.
 - sTask — primary бекенд черг; `sync` — fallback.
 - AI‑дії виконуються від імені сервісного користувача з роллю **AI**.
@@ -19,7 +19,7 @@
 ## 3) Встановлення
 ```bash
 cd core
-php artisan package:installrequire evolution-cms/eai "*"
+php artisan package:installrequire evolution-cms/evo-ai "*"
 ```
 
 ## 4) Publish та міграції

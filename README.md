@@ -1,12 +1,12 @@
 <p align="center">
-<a href="https://packagist.org/packages/evolution-cms/eai"><img src="https://img.shields.io/packagist/dt/evolution-cms/eai" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/evolution-cms/eai"><img src="https://img.shields.io/packagist/v/evolution-cms/eai" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/evolution-cms/evo-ai"><img src="https://img.shields.io/packagist/dt/evolution-cms/evo-ai" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/evolution-cms/evo-ai"><img src="https://img.shields.io/packagist/v/evolution-cms/evo-ai" alt="Latest Stable Version"></a>
 <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
-# evoAi for Evolution CMS
+# evo-ai for Evolution CMS
 
-eAi is the Evolution CMS integration layer for the Laravel AI SDK. It provides Evo‑native config publishing, minimal shims for missing `Illuminate\Foundation` classes, and an sTask‑first queue bridge.
+evo-ai is an Evolution CMS library that integrates Laravel AI SDK capabilities into Evolution-based projects. It provides Evo‑native config publishing, minimal shims for missing `Illuminate\Foundation` classes, and an sTask‑first queue bridge.
 
 If you only need a quick start and examples, use this README. For full details see `DOCS.md` (EN) or `DOCS.uk.md` (UA).
 
@@ -23,7 +23,7 @@ From your Evo `core` directory:
 
 ```bash
 cd core
-php artisan package:installrequire evolution-cms/eai "*"
+php artisan package:installrequire evolution-cms/evo-ai "*"
 php artisan migrate
 ```
 
