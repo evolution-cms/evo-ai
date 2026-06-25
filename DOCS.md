@@ -1,9 +1,9 @@
-# DOCS — eAi (Evolution CMS + Laravel AI SDK)
+# DOCS — evo-ai (Evolution CMS + Laravel AI SDK)
 
-This document is the detailed, structured guide for integrating Laravel AI SDK into Evolution CMS using the eAi package. It expands on the README with deeper configuration and operational details.
+This document is the detailed, structured guide for integrating Laravel AI SDK into Evolution CMS using the evo-ai package. It expands on the README with deeper configuration and operational details.
 
 ## 1) Overview
-- eAi is a thin Evo‑native wrapper around `laravel/ai`.
+- evo-ai is a thin Evo‑native wrapper around `laravel/ai`.
 - No `illuminate/foundation` is required; minimal shims are provided for SDK compatibility.
 - sTask is the primary queue backend; `sync` is a fallback.
 - AI actions run under a dedicated **AI** manager role (service account), not by end‑users.
@@ -19,7 +19,7 @@ Optional:
 ## 3) Install
 ```bash
 cd core
-php artisan package:installrequire evolution-cms/eai "*"
+php artisan package:installrequire evolution-cms/evo-ai "*"
 ```
 
 ## 4) Publish & Migrate

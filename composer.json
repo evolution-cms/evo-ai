@@ -1,6 +1,6 @@
 {
-  "name": "evolution-cms/eai",
-  "description": "Laravel AI SDK integration for Evolution CMS",
+  "name": "evolution-cms/evo-ai",
+  "description": "Evolution CMS library that integrates Laravel AI SDK capabilities into Evolution-based projects",
   "license": "MIT",
   "type": "evolutioncms-plugin",
   "keywords": [

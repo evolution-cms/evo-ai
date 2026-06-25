@@ -1,12 +1,12 @@
 <p align="center">
-<a href="https://packagist.org/packages/evolution-cms/eai"><img src="https://img.shields.io/packagist/dt/evolution-cms/eai" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/evolution-cms/eai"><img src="https://img.shields.io/packagist/v/evolution-cms/eai" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/evolution-cms/evo-ai"><img src="https://img.shields.io/packagist/dt/evolution-cms/evo-ai" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/evolution-cms/evo-ai"><img src="https://img.shields.io/packagist/v/evolution-cms/evo-ai" alt="Latest Stable Version"></a>
 <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
-# eAi для Evolution CMS
+# evo-ai для Evolution CMS
 
-eAi — це інтеграційний шар Evolution CMS для Laravel AI SDK. Пакет додає Evo‑native publish конфігів, мінімальні shims для відсутніх `Illuminate\Foundation` класів і sTask‑first черги.
+evo-ai — це бібліотека Evolution CMS, що інтегрує можливості Laravel AI SDK в Evolution-based проєкти. Пакет додає Evo‑native publish конфігів, мінімальні shims для відсутніх `Illuminate\Foundation` класів і sTask‑first черги.
 
 Якщо потрібен швидкий старт і приклади — використовуйте цей README. Повні деталі дивись у `DOCS.uk.md` (UA) або `DOCS.md` (EN).
 
@@ -23,7 +23,7 @@ eAi — це інтеграційний шар Evolution CMS для Laravel AI S
 
 ```bash
 cd core
-php artisan package:installrequire evolution-cms/eai "*"
+php artisan package:installrequire evolution-cms/evo-ai "*"
 php artisan migrate
 ```
 
