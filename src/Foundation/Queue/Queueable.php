@@ -1,8 +1,8 @@
 <?php
 
-namespace EvolutionCMS\eAi\Foundation\Queue;
+namespace EvolutionCMS\evoAi\Foundation\Queue;
 
-use EvolutionCMS\eAi\Foundation\Bus\PendingDispatch;
+use EvolutionCMS\evoAi\Foundation\Bus\PendingDispatch;
 
 trait Queueable
 {

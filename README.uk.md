@@ -30,9 +30,9 @@ php artisan migrate
 Publish конфігів і stubs (опційно, авто‑publish увімкнений):
 
 ```bash
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-config
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-ai-config
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-stubs
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-config
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-ai-config
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-stubs
 ```
 
 Додай ключ провайдера у `.env` або `core/custom/config/ai.php`:
@@ -65,7 +65,7 @@ echo $response->text;
 
 ## Черги (sTask‑first)
 - sTask — основний бекенд; `sync` — fallback.
-- eAi не реалізує Laravel Queue, лише сумісне dispatching для SDK.
+- evoAi не реалізує Laravel Queue, лише сумісне dispatching для SDK.
 
 Запуск воркера:
 
@@ -74,13 +74,13 @@ php artisan stask:worker
 ```
 
 sTask UI‑воркери (для тесту):
-- `eai_smoke` — фіксований prompt
-- `eai_prompt` — кастомний prompt з віджета
+- `evoai_smoke` — фіксований prompt
+- `evoai_prompt` — кастомний prompt з віджета
 
 ## AI Service Account (рольова модель)
 AI працює як звичайний manager user з роллю **AI** (створюється автоматично). Роль read‑only за замовчуванням; щоб AI могла зберігати/публікувати — підніміть права вручну (наприклад, до Publisher).
 
-Приклад налаштувань у `core/custom/config/cms/settings/eAi.php`:
+Приклад налаштувань у `core/custom/config/cms/settings/evoAi.php`:
 ```
 ai_actor_mode: service
 ai_actor_email: ai@your-host

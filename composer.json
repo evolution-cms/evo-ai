@@ -21,7 +21,7 @@
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "EvolutionCMS\\eAi\\": "src/"
+      "EvolutionCMS\\evoAi\\": "src/"
     },
     "files": [
       "src/Support/AutoloadShims.php",
@@ -37,12 +37,12 @@
   "extra": {
     "laravel": {
       "providers": [
-        "EvolutionCMS\\eAi\\eAiServiceProvider"
+        "EvolutionCMS\\evoAi\\evoAiServiceProvider"
       ]
     },
     "evolution": {
       "providers": [
-        "EvolutionCMS\\eAi\\eAiServiceProvider"
+        "EvolutionCMS\\evoAi\\evoAiServiceProvider"
       ]
     }
   }

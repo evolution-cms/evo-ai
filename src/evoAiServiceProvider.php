@@ -1,22 +1,22 @@
 <?php
 
-namespace EvolutionCMS\eAi;
+namespace EvolutionCMS\evoAi;
 
 use EvolutionCMS\ServiceProvider;
 
-class eAiServiceProvider extends ServiceProvider
+class evoAiServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
         $this->loadPluginsFrom(dirname(__DIR__) . '/plugins/');
         $this->registerFoundationShims();
         $this->registerPrismProvider();
-        $this->loadViewsFrom(dirname(__DIR__) . '/views', 'eAi');
+        $this->loadViewsFrom(dirname(__DIR__) . '/views', 'evoAi');
     }
 
     public function boot(): void
     {
-        $this->mergeConfigFrom(dirname(__DIR__) . '/config/eAiSettings.php', 'cms.settings.eAi');
+        $this->mergeConfigFrom(dirname(__DIR__) . '/config/evoAiSettings.php', 'cms.settings.evoAi');
         $this->mergeConfigFrom(dirname(__DIR__) . '/config/ai.php', 'ai');
 
         $this->loadMigrationsFrom(dirname(__DIR__) . '/database/migrations');
@@ -36,16 +36,16 @@ class eAiServiceProvider extends ServiceProvider
 
     protected function publishResources(): void
     {
-        $settingsPath = $this->customConfigPath('cms/settings/eAi.php');
+        $settingsPath = $this->customConfigPath('cms/settings/evoAi.php');
         $aiConfigPath = $this->customConfigPath('ai.php');
 
         $this->publishes([
-            dirname(__DIR__) . '/config/eAiSettings.php' => $settingsPath,
-        ], 'eai-config');
+            dirname(__DIR__) . '/config/evoAiSettings.php' => $settingsPath,
+        ], 'evoai-config');
 
         $this->publishes([
             dirname(__DIR__) . '/config/ai.php' => $aiConfigPath,
-        ], 'eai-ai-config');
+        ], 'evoai-ai-config');
 
         $stubsPath = dirname(__DIR__) . '/stubs';
         if (is_dir($stubsPath)) {
@@ -53,7 +53,7 @@ class eAiServiceProvider extends ServiceProvider
                 $stubsPath . '/agent.stub' => base_path('stubs/agent.stub'),
                 $stubsPath . '/structured-agent.stub' => base_path('stubs/structured-agent.stub'),
                 $stubsPath . '/tool.stub' => base_path('stubs/tool.stub'),
-            ], 'eai-stubs');
+            ], 'evoai-stubs');
         }
     }
 
@@ -61,14 +61,14 @@ class eAiServiceProvider extends ServiceProvider
     {
         $commands = [];
 
-        if (class_exists(\EvolutionCMS\eAi\Console\AiTestCommand::class)) {
-            $commands[] = \EvolutionCMS\eAi\Console\AiTestCommand::class;
+        if (class_exists(\EvolutionCMS\evoAi\Console\AiTestCommand::class)) {
+            $commands[] = \EvolutionCMS\evoAi\Console\AiTestCommand::class;
         }
-        if (class_exists(\EvolutionCMS\eAi\Console\MakeAgentCommand::class)) {
-            $commands[] = \EvolutionCMS\eAi\Console\MakeAgentCommand::class;
+        if (class_exists(\EvolutionCMS\evoAi\Console\MakeAgentCommand::class)) {
+            $commands[] = \EvolutionCMS\evoAi\Console\MakeAgentCommand::class;
         }
-        if (class_exists(\EvolutionCMS\eAi\Console\MakeToolCommand::class)) {
-            $commands[] = \EvolutionCMS\eAi\Console\MakeToolCommand::class;
+        if (class_exists(\EvolutionCMS\evoAi\Console\MakeToolCommand::class)) {
+            $commands[] = \EvolutionCMS\evoAi\Console\MakeToolCommand::class;
         }
 
         if ($commands !== []) {
@@ -79,7 +79,7 @@ class eAiServiceProvider extends ServiceProvider
     protected function ensureConfigPublished(): void
     {
         $publishMap = [
-            dirname(__DIR__) . '/config/eAiSettings.php' => $this->customConfigPath('cms/settings/eAi.php'),
+            dirname(__DIR__) . '/config/evoAiSettings.php' => $this->customConfigPath('cms/settings/evoAi.php'),
             dirname(__DIR__) . '/config/ai.php' => $this->customConfigPath('ai.php'),
         ];
 
@@ -123,22 +123,22 @@ class eAiServiceProvider extends ServiceProvider
     {
         $this->aliasIfMissing(
             'Laravel\\Ai\\AiServiceProvider',
-            \EvolutionCMS\eAi\LaravelAi\AiServiceProvider::class
+            \EvolutionCMS\evoAi\LaravelAi\AiServiceProvider::class
         );
 
         $this->aliasIfMissing(
             'Illuminate\\Foundation\\Queue\\Queueable',
-            \EvolutionCMS\eAi\Foundation\Queue\Queueable::class
+            \EvolutionCMS\evoAi\Foundation\Queue\Queueable::class
         );
 
         $this->aliasIfMissing(
             'Illuminate\\Foundation\\Bus\\PendingDispatch',
-            \EvolutionCMS\eAi\Foundation\Bus\PendingDispatch::class
+            \EvolutionCMS\evoAi\Foundation\Bus\PendingDispatch::class
         );
 
         $this->aliasIfMissing(
             'Illuminate\\Foundation\\Bus\\Dispatchable',
-            \EvolutionCMS\eAi\Foundation\Bus\Dispatchable::class
+            \EvolutionCMS\evoAi\Foundation\Bus\Dispatchable::class
         );
     }
 

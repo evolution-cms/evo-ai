@@ -1,6 +1,6 @@
 <?php
 
-namespace EvolutionCMS\eAi\sTask;
+namespace EvolutionCMS\evoAi\sTask;
 
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\Conversational;
@@ -13,12 +13,12 @@ class AiSmokeWorker extends BaseWorker
 {
     public function identifier(): string
     {
-        return 'eai_smoke';
+        return 'evoai_smoke';
     }
 
     public function scope(): string
     {
-        return 'eAi';
+        return 'evoAi';
     }
 
     public function icon(): string
@@ -28,7 +28,7 @@ class AiSmokeWorker extends BaseWorker
 
     public function title(): string
     {
-        return 'eAi Smoke Test';
+        return 'evoAi Smoke Test';
     }
 
     public function description(): string

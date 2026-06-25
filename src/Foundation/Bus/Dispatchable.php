@@ -1,6 +1,6 @@
 <?php
 
-namespace EvolutionCMS\eAi\Foundation\Bus;
+namespace EvolutionCMS\evoAi\Foundation\Bus;
 
 trait Dispatchable
 {

@@ -26,9 +26,9 @@ php artisan package:installrequire evolution-cms/evo-ai "*"
 Auto‑publish is enabled, but you may force it:
 
 ```bash
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-config
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-ai-config
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-stubs
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-config
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-ai-config
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-stubs
 ```
 
 Migrations:
@@ -62,7 +62,7 @@ Notes:
 - `default_*` keys define provider defaults for images, audio, etc.
 - Provider keys can be in `.env` or directly in config.
 
-### 5.2 `core/custom/config/cms/settings/eAi.php`
+### 5.2 `core/custom/config/cms/settings/evoAi.php`
 Evo integration settings:
 
 ```php
@@ -101,15 +101,15 @@ Rules:
 
 ## 7) Queues & sTask
 - sTask is the primary backend. `sync` is a fallback for missing sTask or local smoke‑tests.
-- eAi does not implement Laravel Queue; it provides SDK‑compatible dispatching only.
+- evoAi does not implement Laravel Queue; it provides SDK‑compatible dispatching only.
 
 ### 7.1 sTask UI workers
 Visible workers:
-- `eai_smoke` — fixed prompt, quick smoke test.
-- `eai_prompt` — custom prompt from widget.
+- `evoai_smoke` — fixed prompt, quick smoke test.
+- `evoai_prompt` — custom prompt from widget.
 
 Internal worker:
-- `eai` — used only for queued SDK jobs (not for manual execution).
+- `evoai` — used only for queued SDK jobs (not for manual execution).
 
 Process tasks:
 ```bash
@@ -279,7 +279,7 @@ $response = (new SupportAgent())->prompt(
 
 ## 11) File Locations (Quick Map)
 - Config: `core/custom/config/ai.php`
-- Evo settings: `core/custom/config/cms/settings/eAi.php`
+- Evo settings: `core/custom/config/cms/settings/evoAi.php`
 - Agents: `core/custom/app/Ai/Agents/*`
 - Tools: `core/custom/app/Ai/Tools/*`
 - Stubs: `core/stubs/*`

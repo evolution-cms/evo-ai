@@ -1,6 +1,6 @@
 <?php
 
-namespace EvolutionCMS\eAi\LaravelAi;
+namespace EvolutionCMS\evoAi\LaravelAi;
 
 use Closure;
 use Illuminate\Support\Collection;
@@ -21,7 +21,7 @@ class AiServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            // Commands are registered by eAiServiceProvider.
+            // Commands are registered by evoAiServiceProvider.
         }
 
         Stringable::macro('toEmbeddings', function (
@@ -70,6 +70,6 @@ class AiServiceProvider extends ServiceProvider
 
     protected function registerCommands(): void
     {
-        // no-op: commands are registered by eAiServiceProvider
+        // no-op: commands are registered by evoAiServiceProvider
     }
 }
