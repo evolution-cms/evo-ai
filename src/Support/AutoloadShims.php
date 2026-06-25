@@ -2,6 +2,10 @@
 
 // Load shims early (before providers are registered).
 
+if (!class_exists('EvolutionCMS\\eAi\\eAiServiceProvider', false)) {
+    class_alias(\EvolutionCMS\evoAi\evoAiServiceProvider::class, 'EvolutionCMS\\eAi\\eAiServiceProvider');
+}
+
 if (!class_exists('Laravel\\Ai\\AiServiceProvider', false)) {
     class_alias(\EvolutionCMS\evoAi\LaravelAi\AiServiceProvider::class, 'Laravel\\Ai\\AiServiceProvider');
 }
