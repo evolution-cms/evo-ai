@@ -1,6 +1,6 @@
 <?php
 
-namespace EvolutionCMS\eAi\Console;
+namespace EvolutionCMS\evoAi\Console;
 
 use Illuminate\Console\Command;
 use Laravel\Ai\Contracts\Agent;

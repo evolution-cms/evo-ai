@@ -26,9 +26,9 @@ php artisan package:installrequire evolution-cms/evo-ai "*"
 Auto‑publish увімкнений, але можна примусово:
 
 ```bash
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-config
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-ai-config
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-stubs
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-config
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-ai-config
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-stubs
 ```
 
 Міграції:
@@ -62,7 +62,7 @@ return [
 - `default_*` визначають дефолтні провайдери для images/audio/etc.
 - Ключі можуть бути в `.env` або в конфігу.
 
-### 5.2 `core/custom/config/cms/settings/eAi.php`
+### 5.2 `core/custom/config/cms/settings/evoAi.php`
 Налаштування інтеграції Evo:
 
 ```php
@@ -101,15 +101,15 @@ return [
 
 ## 7) Черги та sTask
 - sTask — основний бекенд. `sync` — fallback для середовищ без sTask.
-- eAi не реалізує Laravel Queue; лише сумісне dispatching для SDK.
+- evoAi не реалізує Laravel Queue; лише сумісне dispatching для SDK.
 
 ### 7.1 sTask UI‑воркери
 Видимі воркери:
-- `eai_smoke` — фіксований prompt
-- `eai_prompt` — кастомний prompt з віджета
+- `evoai_smoke` — фіксований prompt
+- `evoai_prompt` — кастомний prompt з віджета
 
 Внутрішній воркер:
-- `eai` — використовується queued SDK‑job’ами (не для ручного запуску)
+- `evoai` — використовується queued SDK‑job’ами (не для ручного запуску)
 
 Запуск воркера:
 ```bash
@@ -279,7 +279,7 @@ $response = (new SupportAgent())->prompt(
 
 ## 11) Карта файлів
 - Конфіг: `core/custom/config/ai.php`
-- Evo‑налаштування: `core/custom/config/cms/settings/eAi.php`
+- Evo‑налаштування: `core/custom/config/cms/settings/evoAi.php`
 - Агенти: `core/custom/app/Ai/Agents/*`
 - Тулзи: `core/custom/app/Ai/Tools/*`
 - Stubs: `core/stubs/*`

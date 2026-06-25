@@ -1,6 +1,6 @@
 <?php
 
-namespace EvolutionCMS\eAi\Foundation\Bus;
+namespace EvolutionCMS\evoAi\Foundation\Bus;
 
 class PendingDispatch
 {
@@ -97,7 +97,7 @@ class PendingDispatch
     {
         $driver = 'stask';
         if (function_exists('config')) {
-            $driver = (string)config('cms.settings.eAi.queue_driver', 'stask');
+            $driver = (string)config('cms.settings.evoAi.queue_driver', 'stask');
         }
 
         return $driver !== '' ? $driver : 'stask';
@@ -107,7 +107,7 @@ class PendingDispatch
     {
         $failover = 'sync';
         if (function_exists('config')) {
-            $failover = (string)config('cms.settings.eAi.queue_failover', 'sync');
+            $failover = (string)config('cms.settings.evoAi.queue_failover', 'sync');
         }
         return $failover !== '' ? $failover : 'sync';
     }
@@ -119,8 +119,8 @@ class PendingDispatch
 
     protected function warnMissingSTask(): void
     {
-        if (function_exists('eAi_log')) {
-            eAi_log('eAi: sTask not available, falling back to sync.', 2);
+        if (function_exists('evoAi_log')) {
+            evoAi_log('evoAi: sTask not available, falling back to sync.', 2);
         }
     }
 
@@ -134,7 +134,7 @@ class PendingDispatch
             return;
         }
 
-        $ids = function_exists('eAi_resolve_ids') ? eAi_resolve_ids() : [];
+        $ids = function_exists('evoAi_resolve_ids') ? evoAi_resolve_ids() : [];
         $actorUserId = (int)($ids['actor_user_id'] ?? 1);
         $conversationUserId = (int)($ids['conversation_user_id'] ?? 1);
         $initiatedByUserId = $ids['initiated_by_user_id'] ?? null;
@@ -153,15 +153,15 @@ class PendingDispatch
 
         try {
             \Seiger\sTask\Facades\sTask::create(
-                identifier: 'eai',
+                identifier: 'evoai',
                 action: 'dispatch',
                 data: $payload,
                 priority: 'normal',
                 userId: $actorUserId
             );
         } catch (\Throwable $e) {
-            if (function_exists('eAi_log')) {
-                eAi_log('eAi: sTask dispatch failed: ' . $e->getMessage(), 2);
+            if (function_exists('evoAi_log')) {
+                evoAi_log('evoAi: sTask dispatch failed: ' . $e->getMessage(), 2);
             }
             if ($this->getQueueFailover() === 'sync') {
                 $this->dispatchSync();

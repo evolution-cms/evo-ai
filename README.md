@@ -30,9 +30,9 @@ php artisan migrate
 Publish configs and stubs (optional, auto‑publish is enabled):
 
 ```bash
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-config
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-ai-config
-php artisan vendor:publish --provider="EvolutionCMS\\eAi\\eAiServiceProvider" --tag=eai-stubs
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-config
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-ai-config
+php artisan vendor:publish --provider="EvolutionCMS\\evoAi\\evoAiServiceProvider" --tag=evoai-stubs
 ```
 
 Set provider key in `.env` or `core/custom/config/ai.php`:
@@ -65,7 +65,7 @@ echo $response->text;
 
 ## Queues (sTask‑first)
 - sTask is the primary backend; `sync` is a fallback.
-- eAi does not implement Laravel Queue; it only provides SDK‑compatible dispatching.
+- evoAi does not implement Laravel Queue; it only provides SDK‑compatible dispatching.
 
 Process queued tasks:
 
@@ -74,13 +74,13 @@ php artisan stask:worker
 ```
 
 sTask UI workers (for testing):
-- `eai_smoke` — fixed prompt
-- `eai_prompt` — custom prompt from widget
+- `evoai_smoke` — fixed prompt
+- `evoai_prompt` — custom prompt from widget
 
 ## AI Service Account (Role‑based)
 AI runs as a normal manager user with role **AI** (auto‑created). The role is read‑only by default; to allow saving/publishing, elevate permissions manually (e.g. Publisher).
 
-Example settings in `core/custom/config/cms/settings/eAi.php`:
+Example settings in `core/custom/config/cms/settings/evoAi.php`:
 ```
 ai_actor_mode: service
 ai_actor_email: ai@your-host

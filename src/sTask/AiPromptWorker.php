@@ -1,6 +1,6 @@
 <?php
 
-namespace EvolutionCMS\eAi\sTask;
+namespace EvolutionCMS\evoAi\sTask;
 
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Contracts\Conversational;
@@ -13,12 +13,12 @@ class AiPromptWorker extends BaseWorker
 {
     public function identifier(): string
     {
-        return 'eai_prompt';
+        return 'evoai_prompt';
     }
 
     public function scope(): string
     {
-        return 'eAi';
+        return 'evoAi';
     }
 
     public function icon(): string
@@ -28,7 +28,7 @@ class AiPromptWorker extends BaseWorker
 
     public function title(): string
     {
-        return 'eAi Prompt';
+        return 'evoAi Prompt';
     }
 
     public function description(): string
@@ -38,7 +38,7 @@ class AiPromptWorker extends BaseWorker
 
     public function renderWidget(): string
     {
-        return view('eAi::widgets.promptWorkerWidget', [
+        return view('evoAi::widgets.promptWorkerWidget', [
             'identifier' => $this->identifier(),
             'description' => $this->description(),
         ])->render();

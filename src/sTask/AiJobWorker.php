@@ -1,6 +1,6 @@
 <?php
 
-namespace EvolutionCMS\eAi\sTask;
+namespace EvolutionCMS\evoAi\sTask;
 
 use Seiger\sTask\Models\sTaskModel;
 use Seiger\sTask\Workers\BaseWorker;
@@ -9,7 +9,7 @@ class AiJobWorker extends BaseWorker
 {
     public function identifier(): string
     {
-        return 'eai';
+        return 'evoai';
     }
 
     public function scope(): string
@@ -24,17 +24,17 @@ class AiJobWorker extends BaseWorker
 
     public function title(): string
     {
-        return 'eAi Jobs';
+        return 'evoAi Jobs';
     }
 
     public function description(): string
     {
-        return 'Dispatches eAi queued jobs via sTask';
+        return 'Dispatches evoAi queued jobs via sTask';
     }
 
     public function taskMake(sTaskModel $task, array $opt = []): void
     {
-        $this->markFailed($task, 'This worker is internal. Use eai_smoke or eai_prompt in sTask UI.');
+        $this->markFailed($task, 'This worker is internal. Use evoai_smoke or evoai_prompt in sTask UI.');
     }
 
     public function taskDispatch(sTaskModel $task, array $options = []): void

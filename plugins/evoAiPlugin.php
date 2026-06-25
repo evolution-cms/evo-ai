@@ -6,35 +6,35 @@ use EvolutionCMS\Models\UserRole;
 use Illuminate\Support\Facades\Schema;
 use Seiger\sTask\Models\sWorker;
 
-if (!function_exists('eAi_log')) {
-    function eAi_log(string $message, int $type = 2): void
+if (!function_exists('evoAi_log')) {
+    function evoAi_log(string $message, int $type = 2): void
     {
         if (function_exists('evo')) {
-            evo()->logEvent(0, $type, $message, 'eAi');
+            evo()->logEvent(0, $type, $message, 'evoAi');
         }
     }
 }
 
-if (!function_exists('eAi_settings')) {
-    function eAi_settings(): array
+if (!function_exists('evoAi_settings')) {
+    function evoAi_settings(): array
     {
-        $settings = config('cms.settings.eAi', []);
+        $settings = config('cms.settings.evoAi', []);
         return is_array($settings) ? $settings : [];
     }
 }
 
-if (!function_exists('eAi_enabled')) {
-    function eAi_enabled(): bool
+if (!function_exists('evoAi_enabled')) {
+    function evoAi_enabled(): bool
     {
-        $settings = eAi_settings();
+        $settings = evoAi_settings();
         return (bool)($settings['enable'] ?? false);
     }
 }
 
-if (!function_exists('eAi_resolve_ids')) {
-    function eAi_resolve_ids(): array
+if (!function_exists('evoAi_resolve_ids')) {
+    function evoAi_resolve_ids(): array
     {
-        eAi_register_stask_worker();
+        evoAi_register_stask_worker();
 
         $conversationUserId = 1;
         $initiatedByUserId = null;
@@ -50,7 +50,7 @@ if (!function_exists('eAi_resolve_ids')) {
             $context = 'web';
         }
 
-        $actorUserId = eAi_actor_user_id() ?? $conversationUserId;
+        $actorUserId = evoAi_actor_user_id() ?? $conversationUserId;
 
         return [
             'conversation_user_id' => $conversationUserId,
@@ -61,10 +61,10 @@ if (!function_exists('eAi_resolve_ids')) {
     }
 }
 
-if (!function_exists('eAi_register_stask_worker')) {
-    function eAi_register_stask_worker(): void
+if (!function_exists('evoAi_register_stask_worker')) {
+    function evoAi_register_stask_worker(): void
     {
-        $settings = eAi_settings();
+        $settings = evoAi_settings();
         if (($settings['queue_driver'] ?? 'stask') !== 'stask') {
             return;
         }
@@ -83,23 +83,23 @@ if (!function_exists('eAi_register_stask_worker')) {
 
         $workers = [
             [
-                'identifier' => 'eai',
+                'identifier' => 'evoai',
                 'scope' => 'system',
-                'class' => \EvolutionCMS\eAi\sTask\AiJobWorker::class,
+                'class' => \EvolutionCMS\evoAi\sTask\AiJobWorker::class,
                 'active' => true,
                 'hidden' => 1,
             ],
             [
-                'identifier' => 'eai_smoke',
-                'scope' => 'eAi',
-                'class' => \EvolutionCMS\eAi\sTask\AiSmokeWorker::class,
+                'identifier' => 'evoai_smoke',
+                'scope' => 'evoAi',
+                'class' => \EvolutionCMS\evoAi\sTask\AiSmokeWorker::class,
                 'active' => true,
                 'hidden' => 0,
             ],
             [
-                'identifier' => 'eai_prompt',
-                'scope' => 'eAi',
-                'class' => \EvolutionCMS\eAi\sTask\AiPromptWorker::class,
+                'identifier' => 'evoai_prompt',
+                'scope' => 'evoAi',
+                'class' => \EvolutionCMS\evoAi\sTask\AiPromptWorker::class,
                 'active' => true,
                 'hidden' => 0,
             ],
@@ -143,20 +143,20 @@ if (!function_exists('eAi_register_stask_worker')) {
     }
 }
 
-if (!function_exists('eAi_actor_user_id')) {
-    function eAi_actor_user_id(): ?int
+if (!function_exists('evoAi_actor_user_id')) {
+    function evoAi_actor_user_id(): ?int
     {
-        $settings = eAi_settings();
+        $settings = evoAi_settings();
         if (($settings['ai_actor_mode'] ?? 'none') !== 'service') {
             return null;
         }
 
-        $roleId = eAi_ai_role_id();
+        $roleId = evoAi_ai_role_id();
         if (!$roleId) {
             return null;
         }
 
-        $identifier = eAi_actor_username($settings);
+        $identifier = evoAi_actor_username($settings);
         $user = $identifier !== '' ? User::query()->where('username', $identifier)->first() : null;
 
         if (!$user) {
@@ -168,7 +168,7 @@ if (!function_exists('eAi_actor_user_id')) {
             }
         }
         if (!$user && !empty($settings['ai_actor_autocreate'])) {
-            $user = eAi_create_actor_user($identifier !== '' ? $identifier : 'AI');
+            $user = evoAi_create_actor_user($identifier !== '' ? $identifier : 'AI');
         }
 
         if (!$user) {
@@ -176,7 +176,7 @@ if (!function_exists('eAi_actor_user_id')) {
         }
 
         if (class_exists(UserAttribute::class)) {
-            $roleId = eAi_ai_role_id();
+            $roleId = evoAi_ai_role_id();
             if ($roleId) {
                 UserAttribute::query()
                     ->where('internalKey', $user->getKey())
@@ -194,23 +194,23 @@ if (!function_exists('eAi_actor_user_id')) {
     }
 }
 
-if (!function_exists('eAi_actor_username')) {
-    function eAi_actor_username(?array $settings = null): string
+if (!function_exists('evoAi_actor_username')) {
+    function evoAi_actor_username(?array $settings = null): string
     {
-        $settings = $settings ?? eAi_settings();
+        $settings = $settings ?? evoAi_settings();
         $roleName = trim((string)($settings['ai_actor_role'] ?? 'AI'));
         return $roleName !== '' ? $roleName : 'AI';
     }
 }
 
-if (!function_exists('eAi_create_actor_user')) {
-    function eAi_create_actor_user(string $identifier): ?User
+if (!function_exists('evoAi_create_actor_user')) {
+    function evoAi_create_actor_user(string $identifier): ?User
     {
         if (!class_exists(User::class) || !class_exists(UserAttribute::class)) {
             return null;
         }
 
-        $settings = eAi_settings();
+        $settings = evoAi_settings();
         $email = (string)($settings['ai_actor_email'] ?? '');
         if ($email === '') {
             $host = 'localhost';
@@ -243,7 +243,7 @@ if (!function_exists('eAi_create_actor_user')) {
                 'fullname' => 'AI Service Account',
             ]);
         } catch (Throwable $e) {
-            eAi_log('eAi: failed to create AI service user: ' . $e->getMessage(), 3);
+            evoAi_log('evoAi: failed to create AI service user: ' . $e->getMessage(), 3);
             return null;
         }
 
@@ -252,7 +252,7 @@ if (!function_exists('eAi_create_actor_user')) {
         }
 
         if ($user && class_exists(UserAttribute::class)) {
-            $roleId = eAi_ai_role_id();
+            $roleId = evoAi_ai_role_id();
             if ($roleId) {
                 UserAttribute::query()
                     ->where('internalKey', $user->getKey())
@@ -270,14 +270,14 @@ if (!function_exists('eAi_create_actor_user')) {
     }
 }
 
-if (!function_exists('eAi_ai_role_id')) {
-    function eAi_ai_role_id(): ?int
+if (!function_exists('evoAi_ai_role_id')) {
+    function evoAi_ai_role_id(): ?int
     {
         if (!class_exists(UserRole::class)) {
             return null;
         }
 
-        $settings = eAi_settings();
+        $settings = evoAi_settings();
         $roleName = trim((string)($settings['ai_actor_role'] ?? 'AI'));
         if ($roleName === '') {
             $roleName = 'AI';
@@ -289,7 +289,7 @@ if (!function_exists('eAi_ai_role_id')) {
         }
 
         if (empty($settings['ai_actor_role_autocreate'])) {
-            eAi_log('eAi: AI role not found and auto-create disabled.', 2);
+            evoAi_log('evoAi: AI role not found and auto-create disabled.', 2);
             return null;
         }
 
@@ -300,17 +300,17 @@ if (!function_exists('eAi_ai_role_id')) {
             ]);
             return (int)$role->getKey();
         } catch (Throwable $e) {
-            eAi_log('eAi: failed to create AI role: ' . $e->getMessage(), 2);
+            evoAi_log('evoAi: failed to create AI role: ' . $e->getMessage(), 2);
             return null;
         }
     }
 }
 
 Event::listen('evolution.OnManagerPageInit', function () {
-    if (!eAi_enabled()) {
+    if (!evoAi_enabled()) {
         return;
     }
 
-    eAi_register_stask_worker();
-    eAi_actor_user_id();
+    evoAi_register_stask_worker();
+    evoAi_actor_user_id();
 });
