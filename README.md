@@ -4,14 +4,14 @@
 <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
 </p>
 
-# eAi for Evolution CMS
+# evoAi for Evolution CMS
 
 eAi is the Evolution CMS integration layer for the Laravel AI SDK. It provides Evo‑native config publishing, minimal shims for missing `Illuminate\Foundation` classes, and an sTask‑first queue bridge.
 
 If you only need a quick start and examples, use this README. For full details see `DOCS.md` (EN) or `DOCS.uk.md` (UA).
 
 ## Requirements
-- Evolution CMS 3.5.2+
+- Evolution CMS 3.5+
 - PHP 8.3+
 - Composer 2.2+
 
